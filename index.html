@@ -1,0 +1,56 @@
+<!doctype>
+<html>
+<head>
+    <base href="/"> 
+    <!-- Lets ng2 know where our root is for routing. 
+         Might be /clickthroughs/ in CSP EMS. -->
+    
+    <title>Angular 2 Boilerplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    
+    <!-- File loader -->        
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    
+    <!-- Lets us use observables and http in ng2 without promises -->    
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    
+    <!-- Needed for routes in http -->        
+    <script src="node_modules/angular2/bundles/angular2.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.js"></script>
+
+    <!-- include our main css -->    
+    <link rel="stylesheet" href="src/css/app.css">
+    
+    <!--Angular2 uses SPAs, so this is the ONLY html file 
+        that will be rendered in the browser.
+        In CSP EMS, this will be the MVC view. -->
+</head>
+<body>
+    
+<!--directive. insert template here. root level component. 
+can only have one. but it can have children, and those 
+children can have siblings, etc -->
+<my-app>Loading...</my-app> 
+
+<!-- Load all the files we need for our app -->    
+<script>
+    System.config({
+        packages: {
+            app: {
+                format: 'register',
+                defaultExtension: 'js'
+            }
+        }
+    });   
+    System.import('app/boot') //boot.ts starts whole app
+            .then(null, console.error.bind(console));
+</script>
+</body>
+</html>
